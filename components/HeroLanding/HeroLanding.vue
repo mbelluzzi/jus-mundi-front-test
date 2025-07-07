@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import { FullPageSection, HeroPartners } from '#components';
-
-</script>
-
 <template>
     <FullPageSection class="hero-landing">
         <HeroPartners class="left" />
