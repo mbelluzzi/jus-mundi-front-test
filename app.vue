@@ -1,9 +1,8 @@
-<script setup lang="ts">
-  import { HeroLanding } from '#components';
-</script>
 <template>
-  <div>
-    <HeroLanding/>
-    <!-- <PartnerShipBlock/> -->
-  </div>
+  <main>
+    <ReturnHomeButton />
+    <a id="landing" />
+    <HeroLanding />
+    <HeroLanding />
+  </main>
 </template>
