@@ -1,8 +1,8 @@
 <template>
   <main>
-    <ReturnHomeButton />
     <a id="landing" />
     <HeroLanding />
-    <HeroLanding />
+    <PartnerShip />
+    <ReturnHomeButton />
   </main>
 </template>
