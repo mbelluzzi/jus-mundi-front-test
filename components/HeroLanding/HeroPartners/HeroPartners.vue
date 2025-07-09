@@ -42,7 +42,13 @@
       :time="caseAnimationData.time"
       class="case-bg"
     >
-      <NuxtImg src="/images/case_bg.gif" alt="GIF for case background" />
+      <NuxtImg
+        src="/images/case_bg.gif"
+        alt="GIF for case background"
+        width="100%"
+        height="100%"
+        preload
+      />
     </FadeIn>
   </div>
 </template>
@@ -108,9 +114,9 @@
 
   .case-bg {
     position: absolute;
-    width: 80%;
-    height: 80%;
-    top: 100px;
+    width: 70%;
+    height: 70%;
+    top: 200px;
     left: -200px;
     z-index: -1;
   }

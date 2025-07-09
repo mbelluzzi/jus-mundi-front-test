@@ -1,13 +1,12 @@
 <template>
-  <button class="return-home" @click="onClick">
+  <button class="return-home" @click="scrollToLanding">
     <NuxtImg src="/images/ico-arrow_up.svg" alt="Try Jus Mundi" width="16px" />
     <span> Try Jus Mundi </span>
   </button>
 </template>
 
 <script setup lang="ts">
-  const onClick = () => {
-    console.log('click');
+  const scrollToLanding = () => {
     document.getElementById('landing')?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',

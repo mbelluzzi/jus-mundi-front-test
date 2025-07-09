@@ -18,7 +18,9 @@
       </p>
     </FadeIn>
     <FadeIn :opacity="ctaAnimationData.opacity" class="hero-cta">
-      <button class="cta"><b>> Access ICC Awards</b></button>
+      <button class="cta" @click="scrollToPartnership">
+        <b>> Access ICC Awards</b>
+      </button>
     </FadeIn>
   </div>
 </template>
@@ -42,6 +44,13 @@
     setTimeout(() => {
       ctaAnimationData.value.opacity = 1;
     }, 2000);
+  };
+
+  const scrollToPartnership = () => {
+    document.getElementById('partnership')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   };
 
   onMounted(() => {

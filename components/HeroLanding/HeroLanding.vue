@@ -16,10 +16,11 @@
   .hero-landing {
     display: flex;
     align-items: center;
-
+    justify-content: start;
     .left {
       height: 100vh;
       min-width: 50vw;
+      z-index: -1;
     }
     .right {
       max-width: 40vw;

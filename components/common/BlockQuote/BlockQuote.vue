@@ -9,7 +9,9 @@
       {{ source }}
     </div>
     <slot name="link">
-      <a :href target="_blank" rel="noopener noreferrer">{{ linkText }}</a>
+      <a :href target="_blank" rel="noopener noreferrer" class="link-text">
+        <b>{{ linkText }}</b>
+      </a>
     </slot>
   </div>
 </template>
@@ -29,45 +31,43 @@
 </script>
 
 <style scoped>
+  .link-text {
+    color: var(--typography-font-color);
+    font-family: 'Lato';
+    letter-spacing: 2px;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
   .blockquote {
     display: flex;
     align-items: center;
     justify-items: center;
     justify-content: center;
     flex-flow: column;
-    margin: 0 16em;
     gap: 1em;
-    * {
-      text-align: center;
+
+    em {
+      font-family: 'Larken';
+      font-size: 20px;
+      line-height: 48px;
+      display: block;
+    }
+
+    em::before,
+    em::after {
+      position: relative;
+      display: inline-block;
+    }
+    em::before {
+      content: url('/images/quote_2.svg');
+      left: -4em;
+    }
+    em::after {
+      content: url('/images/quote_1.svg');
+      left: 8em;
     }
   }
-
   .source {
-    max-width: 640px;
-  }
-
-  blockquote em::before {
-    position: relative;
-    content: url('images/quote_2.svg');
-    display: inline-block;
-    line-height: 0.5;
-    left: -4em;
-  }
-
-  blockquote em::after {
-    position: relative;
-    content: url('images/quote_1.svg');
-    display: inline-block;
-    line-height: 0.5;
-    left: 8rem;
-  }
-
-  blockquote em {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 50px;
-    text-align: center;
-    display: block;
     max-width: 640px;
   }
 </style>
