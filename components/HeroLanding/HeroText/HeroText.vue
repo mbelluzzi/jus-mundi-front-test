@@ -1,16 +1,16 @@
 <template>
   <div>
-    <FadeIn :opacity="textAnimationData.opacity" :time="textAnimationData.time">
+    <FadeIn :opacity="textAnimationData.opacity" :time="TEXT_ANIMATION_TIME">
       <SlideIn
         :translate-y="textAnimationData.translateY"
-        :time="textAnimationData.time"
+        :time="TEXT_ANIMATION_TIME"
       >
         <h1 class="hero-title">
           A Unique Partnership for the Publication of ICC Arbitration Awards
         </h1>
       </SlideIn>
     </FadeIn>
-    <FadeIn :opacity="textAnimationData.opacity" :time="textAnimationData.time">
+    <FadeIn :opacity="textAnimationData.opacity" :time="TEXT_ANIMATION_TIME">
       <p class="hero-text">
         The International Chamber of Commerce (ICC) & Jus Mundi have joined
         forces to make ICC Arbitration Awards and related materials freely
@@ -25,26 +25,35 @@
   </div>
 </template>
 <script setup lang="ts">
-  const textAnimationData = ref({
+  const TEXT_ANIMATION_TIME = 1.5;
+  const TEXT_ANIMATION_START = 1000;
+  const CTA_ANIMATION_START = 2000;
+
+  const textAnimationData = reactive({
     opacity: 0,
     translateY: 50,
-    time: 1.5,
   });
 
-  const ctaAnimationData = ref({
+  const ctaAnimationData = reactive({
     opacity: 0,
-    time: 0.5,
   });
 
-  const animate = () => {
-    setTimeout(() => {
-      textAnimationData.value.opacity = 1;
-      textAnimationData.value.translateY = 0;
-    }, 1000);
-    setTimeout(() => {
-      ctaAnimationData.value.opacity = 1;
-    }, 2000);
-  };
+  const { animate: animateText } = useAnimationState(
+    textAnimationData,
+    {
+      opacity: 1,
+      translateY: 0,
+    },
+    TEXT_ANIMATION_START
+  );
+
+  const { animate: animateCta } = useAnimationState(
+    ctaAnimationData,
+    {
+      opacity: 1,
+    },
+    CTA_ANIMATION_START
+  );
 
   const scrollToPartnership = () => {
     document.getElementById('partnership')?.scrollIntoView({
@@ -54,7 +63,8 @@
   };
 
   onMounted(() => {
-    animate();
+    animateText();
+    animateCta();
   });
 </script>
 <style>

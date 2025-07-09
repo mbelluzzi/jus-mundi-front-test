@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="hero-partners">
     <Expand
-      :scale="ICCLogoAnimationData.scale"
-      :time="ICCLogoAnimationData.expandTime"
+      :scale="ICCBackgroundAnimationData.scale"
+      :time="ICC_LOGO_ANIMATION_TIME"
       :class="['logo-icc']"
     >
       <RoundLogoBackground>
         <FadeIn
           :opacity="ICCLogoAnimationData.opacity"
-          :time="ICCLogoAnimationData.opacityTime"
+          :time="ICC_LOGO_ANIMATION_TIME"
         >
           <NuxtImg
             src="/images/logo_icc.svg"
@@ -20,13 +20,13 @@
     </Expand>
     <FadeIn
       :opacity="JMLogoAnimationData.opacity"
-      :time="JMLogoAnimationData.opacityTime"
+      :time="JM_LOGO_ANIMATION_TIME"
       class="logo-jm"
     >
       <SlideIn
         :translate-x="JMLogoAnimationData.translateX"
         :translate-y="JMLogoAnimationData.translateY"
-        :time="JMLogoAnimationData.translateTime"
+        :time="JM_LOGO_ANIMATION_TIME"
       >
         <RoundLogoBackground>
           <NuxtImg
@@ -39,7 +39,7 @@
     </FadeIn>
     <FadeIn
       :opacity="caseAnimationData.opacity"
-      :time="caseAnimationData.time"
+      :time="CASE_BG_ANIMATION_TIME"
       class="case-bg"
     >
       <NuxtImg
@@ -54,70 +54,101 @@
 </template>
 
 <script setup lang="ts">
-  const ICCLogoAnimationData = ref({
+  import { useAnimationState } from '~/composables/useHeroPartnersAnimation';
+
+  const ICC_LOGO_ANIMATION_TIME = 1;
+  const ICC_LOGO_ANIMATION_START = 1000;
+  const JM_LOGO_ANIMATION_TIME = 0.5;
+  const JM_LOGO_ANIMATION_START = 1500;
+  const CASE_BG_ANIMATION_TIME = 1;
+  const CASE_BG_ANIMATION_START = 2000;
+
+  const ICCBackgroundAnimationData = reactive({
     scale: 0,
-    expandTime: 1,
-    opacity: 0,
-    opacityTime: 1,
   });
-  const JMLogoAnimationData = ref({
+  const ICCLogoAnimationData = reactive({
+    opacity: 0,
+  });
+  const JMLogoAnimationData = reactive({
     translateX: -100,
     translateY: 100,
-    translateTime: 0.5,
     opacity: 0,
-    opacityTime: 0.5,
   });
-  const caseAnimationData = ref({
+  const caseAnimationData = reactive({
     opacity: 0,
-    time: 1,
   });
 
-  const animate = () => {
-    ICCLogoAnimationData.value.scale = 1;
-    setTimeout(() => {
-      ICCLogoAnimationData.value.opacity = 1;
-      ICCLogoAnimationData.value.opacityTime = 1;
-    }, 1000);
-    setTimeout(() => {
-      JMLogoAnimationData.value.translateX = 0;
-      JMLogoAnimationData.value.translateY = 0;
-      JMLogoAnimationData.value.opacity = 0.8;
-      caseAnimationData.value.opacity = 1;
-    }, 2000);
-  };
+  const { animate: animateICCBackground } = useAnimationState(
+    ICCBackgroundAnimationData,
+    {
+      scale: 1,
+    }
+  );
+  const { animate: animateICCLogo } = useAnimationState(
+    ICCLogoAnimationData,
+    {
+      opacity: 1,
+    },
+    ICC_LOGO_ANIMATION_START
+  );
+  const { animate: animateJMLogo } = useAnimationState(
+    JMLogoAnimationData,
+    {
+      translateX: 0,
+      translateY: 0,
+      opacity: 0.8,
+    },
+    JM_LOGO_ANIMATION_START
+  );
+  const { animate: animateCase } = useAnimationState(
+    caseAnimationData,
+    {
+      opacity: 0.8,
+    },
+    CASE_BG_ANIMATION_START
+  );
 
   onMounted(() => {
-    animate();
+    animateICCBackground();
+    animateICCLogo();
+    animateJMLogo();
+    animateCase();
   });
 </script>
 <style scoped>
-  .logo-jm {
-    max-width: 250px;
-    max-height: 250px;
-    left: 150px;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-  }
+  .hero-partners {
+    container: size;
+    .logo-jm {
+      max-width: 250px;
+      max-height: 250px;
+      left: 150px;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      justify-items: center;
+    }
 
-  .logo-icc {
-    max-width: 500px;
-    max-height: 500px;
-    left: 150px;
-    top: 50px;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-  }
+    .logo-icc {
+      max-width: 500px;
+      max-height: 500px;
+      left: 150px;
+      top: 50px;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      justify-items: center;
+    }
 
-  .case-bg {
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    top: 200px;
-    left: -200px;
-    z-index: -1;
+    .case-bg {
+      position: absolute;
+      width: 70cqw;
+      height: 70cqh;
+      top: 200px;
+      left: 0;
+      z-index: -1;
+      container-type: size;
+      /* Adjust with translate for fine-tuning if needed */
+      transform: translateX(-10%);
+    }
   }
 </style>
