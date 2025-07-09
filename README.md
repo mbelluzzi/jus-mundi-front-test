@@ -31,7 +31,3 @@ Locally preview production build:
 ```bash
 npm run preview
 ```
-
-After installing dependencies, Nuxt will automatically run `nuxt prepare` as a postinstall step.
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
