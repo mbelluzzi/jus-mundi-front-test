@@ -7,7 +7,7 @@ export interface AnimationStateData {
   translateY?: number;
 }
 
-type AnimationStateKeys = keyof AnimationStateData;
+export type AnimationStateKeys = keyof AnimationStateData;
 
 export const useAnimationState = <T extends AnimationStateData>(
   animationState: Reactive<T>,

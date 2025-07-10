@@ -54,8 +54,6 @@
 </template>
 
 <script setup lang="ts">
-  import { useAnimationState } from '~/composables/useHeroPartnersAnimation';
-
   const ICC_LOGO_ANIMATION_TIME = 1;
   const ICC_LOGO_ANIMATION_START = 1000;
   const JM_LOGO_ANIMATION_TIME = 0.5;

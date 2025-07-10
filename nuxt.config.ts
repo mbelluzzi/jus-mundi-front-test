@@ -16,7 +16,12 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/test-utils', '@nuxt/image', '@nuxt/eslint'],
+  modules: [
+    '@nuxt/test-utils',
+    '@nuxt/test-utils/module',
+    '@nuxt/image',
+    '@nuxt/eslint',
+  ],
   css: [
     '@/assets/css/main.css',
     '@/assets/css/animation.css',
